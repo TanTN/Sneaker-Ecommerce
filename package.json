@@ -11,10 +11,10 @@
     "lint": "eslint src --ext js --report-unused-disable-directives --max-warnings 0",
     "clean": "del build",
     "build-babel": "babel ./src -d ./build/src",
-
+    
     "production": "npm run build && node ./build/src/server.js",
     "dev": "nodemon --exec babel-node ./src/server.js",
-    "start": "node index.js"
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "TanTN",
