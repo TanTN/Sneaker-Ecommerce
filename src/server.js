@@ -32,10 +32,6 @@ const ON_SERVER = () => {
     })
 };
 
-// (async () => {
-//     await CONNECT_DB()
-//     ON_SERVER()
-// })()
 const onServer = async () => {
     await CONNECT_DB()
     ON_SERVER()
