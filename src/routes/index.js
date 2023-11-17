@@ -11,7 +11,12 @@ const routes = (app) => {
     app.use("/api/v1/category",category)
     app.use("/api/v1/brand",brand)
     app.use("/api/v1/order",order)
-
+    app.get("/", (req, res) => { 
+        res.json({
+            name: "tantran",
+            age: 20
+        })
+    })
     app.use(notfound)
     app.use(handleError)
 }
