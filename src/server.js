@@ -31,9 +31,12 @@ const ON_SERVER = () => {
         console.log(`listening on port http://${env.APP_HOST}:${PORT}`)
     })
 };
-
-const onServer = async () => {
+(async() => {
     await CONNECT_DB()
     ON_SERVER()
-}
-export default onServer
+})()
+// const onServer = async () => {
+//     await CONNECT_DB()
+//     ON_SERVER()
+// }
+// export default onServer
