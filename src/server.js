@@ -25,7 +25,7 @@ const ON_SERVER = () => {
     app.use(express.urlencoded({ extended: true}))
 
     routes(app)
-
+    
     const PORT = env.APP_PORT || 6100
 
     app.listen(PORT, (err, res) => {
