@@ -1,2 +1,2 @@
-// import onServer from "./src/server.js";
-// onServer()
+import onServer from "./src/server.js";
+onServer()
