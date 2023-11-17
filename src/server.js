@@ -32,7 +32,12 @@ const ON_SERVER = () => {
     })
 };
 
-(async () => {
+// (async () => {
+//     await CONNECT_DB()
+//     ON_SERVER()
+// })()
+const onServer = async () => {
     await CONNECT_DB()
     ON_SERVER()
-})()
+}
+export default onServer
