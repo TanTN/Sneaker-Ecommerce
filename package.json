@@ -6,6 +6,7 @@
   "engines": {
     "node": "18.x"
   },
+  "type":"module",
   "scripts": {
     "lint": "eslint src --ext js --report-unused-disable-directives --max-warnings 0",
     "clean": "del build",

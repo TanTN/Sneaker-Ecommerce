@@ -1,6 +1,5 @@
 import express from 'express';
-// import compress from 'compression';
-const compress = require('compression');
+import compress from 'compression';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
