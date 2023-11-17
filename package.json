@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "engines": {
     "node": "18.x"
   },
@@ -14,7 +14,7 @@
 
     "production": "npm run build && node ./build/src/server.js",
     "dev": "nodemon --exec babel-node ./src/server.js",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "TanTN",
