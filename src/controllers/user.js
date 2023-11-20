@@ -51,7 +51,7 @@ const finalRegister = asyncHandler(async (req, res) => {
     const expiresIn = user?.email?.split("~")[2]
     if (!user || +expiresIn < Date.now()) {
         res.status(200).json({
-            user: false,
+            success: false,
             mes: "Mã xác nhận không đúng."
         })
     }
@@ -60,7 +60,7 @@ const finalRegister = asyncHandler(async (req, res) => {
     user.email = email
     await user.save()
     res.status(200).json({
-        user: true,
+        success: true,
         mes: "Tài khoản của bạn đã đăng kí thành công."
     })
 })
