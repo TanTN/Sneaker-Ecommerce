@@ -15,7 +15,7 @@ var userSchema = new mongoose.Schema({
     mobile:{
         type:String,
         required:true,
-        // unique:true,
+        unique:true,
     },
     password:{
         type:String,
@@ -58,9 +58,6 @@ var userSchema = new mongoose.Schema({
     isBlocked: {
         type: Boolean,
         default:false
-    },
-    accessToken: {
-        type: String
     },
     refreshToken: {
         type: String

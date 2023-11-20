@@ -3,12 +3,14 @@ import compress from 'compression';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 import {CONNECT_DB} from "./configs/db.config.js"
 import {env} from "./configs/environment.js"
 import routes from './routes/index.js';
 
 const app = express();
+
 
 const ON_SERVER = () => {
     app.use(cookieParser())
@@ -22,7 +24,11 @@ const ON_SERVER = () => {
 
     app.use(express.json())
     app.use(express.urlencoded({ extended: true}))
-
+    app.use(cors({
+        origin: "*",
+        methods: "GET,PUT,POST,DELETE",
+        preflightContinue: false,
+    }))
     routes(app)
     
     const PORT = env.APP_PORT || 6100

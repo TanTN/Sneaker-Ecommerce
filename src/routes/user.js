@@ -4,7 +4,8 @@ import { verifyToken, isAdmin } from "../middlewares/verifyToken.js"
 import update from "../configs/cloudinary.js"
 const routes = express.Router();
 
-routes.post('/register',ctrl.register)
+routes.post('/register', ctrl.register)
+routes.post('/finalRegister', ctrl.finalRegister)
 routes.get('/login',ctrl.login)
 routes.get('/logout',verifyToken,ctrl.logout)
 routes.get('/userCurrent',verifyToken,ctrl.getUserCurrent)

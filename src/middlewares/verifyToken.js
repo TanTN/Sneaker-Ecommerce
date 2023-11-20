@@ -14,6 +14,11 @@ const verifyToken = (req, res, next) => {
             req.user = decode
             next()
         })
+
+        res.status(401).json({
+            success: false,
+            message: 'invalid access token'
+        })
     } else {
         res.status(401).json({
             success: false,

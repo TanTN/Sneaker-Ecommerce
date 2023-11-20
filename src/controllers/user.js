@@ -1,10 +1,10 @@
 import asyncHandler from 'express-async-handler'
 import User from '../models/users.js'
-import Products from '../models/product.js'
 import { generateAccessToken, generateRefreshToken } from "../middlewares/jwt.js"
 import generateSendEmail from "../utils/sendMail.js" 
 import cloudinary from "cloudinary"
 import crypto from "crypto";
+import makeTOken from "uniq-id"
 
 const register = asyncHandler(async (req, res) => {
     const { email, mobile, password, name } = req.body
@@ -16,20 +16,52 @@ const register = asyncHandler(async (req, res) => {
     const userRegistered = await User.findOne({ email })
     if (userRegistered) throw new Error("email already registered")
 
-    // create new user
-    const newUser = await User.create(req.body)
-    
-    // create access and refresh token
-    const accessToken = generateAccessToken(newUser._id.toString(), newUser.rule)
-    const refreshToken = generateRefreshToken(newUser._id.toString())
+    // make token
+    const token = makeTOken()
 
-    // update access and refresh token
-    const userUpdate = await User.findByIdAndUpdate(newUser._id,{accessToken, refreshToken}, {new: true}).select("-password -refreshToken")
+    // create new user
+    const expiresIn = Date.now() + 5 * 60 * 1000
+    req.body.email = `${email}~${token}~${expiresIn}`
+    const newUser = await User.create(req.body)
+
+    // send email
+    const html = `
+        <div>
+            <img src="https://sneaker-store-eight.vercel.app/assets/cropped-logo-roll-sneaker-482951d6.png">
+            <p style="font-size:16px">Mã xác nhận đăng khí tài khoản của bạn là:</p>
+            <div style="font-size:18px"><b><i>${token}</i></b></div>
+        </div>
+    `
+    await generateSendEmail(html, email)
+
+    // delete email when false
+    setTimeout(async() => {
+        await User.findOneAndDelete({email:newUser.email})
+    }, 5 * 60 * 1000)
     
-    res.cookie("refreshToken", refreshToken,{maxAge:7 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true})
     res.status(200).json({
-        success: userUpdate ? true : false,
-        user: userUpdate ? userUpdate : "somethings went wrong"
+        success: true,
+        mes: "Kiểm tra email của bạn để lấy mã xác nhận."
+    })
+})
+
+const finalRegister = asyncHandler(async (req, res) => { 
+    const { token } = req.body
+    const user = await User.findOne({ email: new RegExp(`${token}`, 'g') })
+    const expiresIn = user?.email?.split("~")[2]
+    if (!user || +expiresIn < Date.now()) {
+        res.status(200).json({
+            user: false,
+            mes: "Mã xác nhận không đúng."
+        })
+    }
+
+    const email = user.email.split("~")[0]
+    user.email = email
+    await user.save()
+    res.status(200).json({
+        user: true,
+        mes: "Tài khoản của bạn đã đăng kí thành công."
     })
 })
 
@@ -47,8 +79,8 @@ const login = asyncHandler(async (req, res) => {
     const refreshToken = generateRefreshToken(user._id.toString())
 
     // update access token in res
-    const userUpdate = await User.findByIdAndUpdate(user._id,{accessToken,refreshToken},{new: true}).select("-password -createdAt -updatedAt -refreshToken")
-
+    const userUpdate = await User.findByIdAndUpdate(user._id,{refreshToken},{new: true}).select("-password -createdAt -updatedAt -refreshToken")
+    userUpdate.accessToken = accessToken
     // add refresh in cookie
     res.cookie("refreshToken", refreshToken, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true })
     
@@ -259,5 +291,6 @@ export {
     updateCart,
     updateAddress,
     addProductCart,
-    updateAvatar
+    updateAvatar,
+    finalRegister
 }
