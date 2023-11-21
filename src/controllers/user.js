@@ -10,11 +10,14 @@ const register = asyncHandler(async (req, res) => {
     const { email, mobile, password, name } = req.body
 
     // check body input
-    if (!email && !password && !name && !mobile) throw new Error("missing input")  
+    if (!email && !password && !name && !mobile) throw new Error("missing input")
 
     // find user
-    const userRegistered = await User.findOne({ email })
-    if (userRegistered) throw new Error("email already registered")
+    const checkEmail = await User.findOne({ email })
+    if (checkEmail) throw new Error("email đã được đăng kí.")
+    const checkMobile = await User.findOne({ mobile })
+    if (checkMobile) throw new Error("Số điện thoại đã được đăng kí.")
+        
 
     // make token
     const token = makeTOken()
@@ -41,7 +44,7 @@ const register = asyncHandler(async (req, res) => {
     
     res.status(200).json({
         success: true,
-        mes: "Kiểm tra email của bạn để lấy mã xác nhận."
+        message: "Kiểm tra email của bạn để lấy mã xác nhận."
     })
 })
 
@@ -52,7 +55,7 @@ const finalRegister = asyncHandler(async (req, res) => {
     if (!user || +expiresIn < Date.now()) {
         res.status(200).json({
             success: false,
-            mes: "Mã xác nhận không đúng."
+            message: "Mã xác nhận không đúng."
         })
     }
 
@@ -61,7 +64,7 @@ const finalRegister = asyncHandler(async (req, res) => {
     await user.save()
     res.status(200).json({
         success: true,
-        mes: "Tài khoản của bạn đã đăng kí thành công."
+        message: "Tài khoản của bạn đã đăng kí thành công."
     })
 })
 
