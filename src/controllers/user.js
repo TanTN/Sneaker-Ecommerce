@@ -15,8 +15,8 @@ const register = asyncHandler(async (req, res) => {
     // find user
     const checkEmail = await User.findOne({ email })
     if (checkEmail) throw new Error("email đã được đăng kí.")
-    const checkMobile = await User.findOne({ mobile })
-    if (checkMobile) throw new Error("Số điện thoại đã được đăng kí.")
+    // const checkMobile = await User.findOne({ mobile })
+    // if (checkMobile) throw new Error("Số điện thoại đã được đăng kí.")
     // if (checkMobile) {
     //     res.status(200).json({
     //         success: false,
