@@ -2,6 +2,7 @@ import asyncHandler from "express-async-handler"
 import Product from "../models/product.js"
 import slugify from "slugify"
 import cloudinary from "cloudinary"
+import {env} from "../configs/environment.js"
 
 const createProduct = asyncHandler(async (req, res) => {
     if (Object.keys(req.body).length === 0) throw new Error("missing input")
@@ -27,14 +28,23 @@ const updateProduct = asyncHandler(async (req, res) => {
     })
 })
 const getProduct = asyncHandler(async (req, res) => {
-    const {pid} = req.params
-    const products = await Product.findById(pid)
+    const {slug} = req.params
+    const products = await Product.findOne({slug})
+    res.status(200).json({
+        success: products ? true : false,
+        product: products ? products : "something went wrong"
+    })
+})
+
+const getProducts = asyncHandler(async (req, res) => { 
+    const products = await Product.find()
     res.status(200).json({
         success: products ? true : false,
         products: products ? products : "something went wrong"
     })
 })
-const getProducts = asyncHandler(async (req, res) => {
+
+const getProductFilter = asyncHandler(async (req, res) => {
     let queryObj = {...req.query}
     const excludeFields = ["page", "sort", "filter", "fields"]
     excludeFields.forEach(element => {
@@ -47,7 +57,7 @@ const getProducts = asyncHandler(async (req, res) => {
     let queryString = JSON.stringify(queryObj)
     queryString = queryString.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`)
     queryString = JSON.parse(queryString)   
-    console.log(queryString)
+
     const products = Product.find(queryString)
 
     // sort
@@ -63,9 +73,9 @@ const getProducts = asyncHandler(async (req, res) => {
     }
 
     // get pages
-    const initLimit = 5
+    
     const page = req?.query?.page || 1
-    const limit = initLimit || 5
+    const limit = env.PAGE_LIMIT || 10
     const pageSize = page - 1 === 0 ? 0 : (page - 1) * limit
     products.skip(pageSize).limit(limit)
     
@@ -94,6 +104,33 @@ const deleteProduct = asyncHandler(async (req, res) => {
         product: product ? "deleted product successfully" : "can't deleted product"
     })
 })
+
+const updateSize = asyncHandler(async (req, res) => { 
+    const { pid } = req.params
+    const { size, quantity } = req.body
+    if (!size || !quantity) throw new Error("Không có size và số lượng size giày còn lại.")
+    if (+size < 35 || +size > 37) throw new Error("Size không hợp lệ.")
+    const product = await Product.findById(pid)
+    if (!product) throw new Error("Product không tồn tại")
+    const alreadySize = product.sizes.find(sizes => sizes.size == size)
+    
+    if (alreadySize) {
+        // update size
+        const productUpdate = await Product.updateOne({ sizes: { $elemMatch: alreadySize } }, {$set:{ "sizes.$.quantity": quantity }}, { new: true })
+        res.status(200).json({
+            success: productUpdate ? true : false,
+            message: productUpdate ? "update size product successfully" : "update size product false"
+        })
+    } else {
+        // add size
+        const productUpdate = await Product.findByIdAndUpdate(pid, { $push: { sizes: { size, quantity } } }, { new: true })
+        res.status(200).json({
+            success: productUpdate ? true : false,
+            message: productUpdate ? "add size product successfully" : "add size product false"
+        })
+    }
+})
+
 const updateImages = asyncHandler(async (req, res) => { 
     const { pid } = req.params
 
@@ -114,5 +151,7 @@ export {
     updateProduct,
     getProduct,
     getProducts,
-    updateImages
+    getProductFilter,
+    updateImages,
+    updateSize
 }

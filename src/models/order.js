@@ -5,14 +5,15 @@ var orderSchema = new mongoose.Schema({
     products:[{
         product: { type: mongoose.Types.ObjectId },
         title:{ type: String},
-        size: { type: Number },
-        quantity: { type: Number },
+        size: { type: String },
+        quantity: { type: String },
         images: [{
             type: String
         }],
+        price: { type: String}
 
     }],
-    total: { type: Number },
+    total: { type: String },
     orderBy: {
         type: mongoose.Types.ObjectId,
         ref: "User"

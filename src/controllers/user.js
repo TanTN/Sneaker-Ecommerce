@@ -5,6 +5,8 @@ import generateSendEmail from "../utils/sendMail.js"
 import cloudinary from "cloudinary"
 import crypto from "crypto";
 import makeTOken from "uniq-id"
+import { env } from '../configs/environment.js'
+import Product from '../models/product.js'
 
 const register = asyncHandler(async (req, res) => {
     const { email, mobile, password, name } = req.body
@@ -13,7 +15,7 @@ const register = asyncHandler(async (req, res) => {
     if (!email && !password && !name && !mobile) throw new Error("missing input")
 
     // find user
-    const checkEmail = await User.findOne({ email: new RegExp(`${email}`, 'g')  })
+    const checkEmail = await User.findOne({ email })
     if (checkEmail) throw new Error("email đã được đăng kí.")
     const checkMobile = await User.findOne({ mobile })
     if (checkMobile) throw new Error("Số điện thoại đã được đăng kí.")
@@ -24,6 +26,7 @@ const register = asyncHandler(async (req, res) => {
     // create new user
     const expiresIn = Date.now() + 5 * 60 * 1000
     req.body.email = `${email}~${token}~${expiresIn}`
+    req.body.mobile = `${mobile}~${token}`
     const newUser = await User.create(req.body)
 
     // send email
@@ -59,8 +62,16 @@ const finalRegister = asyncHandler(async (req, res) => {
     }
 
     const email = user.email.split("~")[0]
+    const mobile = user.mobile.split("~")[0]
+
+    // check lại user
+    const checkUser = await User.findOne({ email: email, mobile: mobile })
+    if (checkUser) throw new Error("Email hoặc số điện thoại cảu bạn đã được đăng kí.")
+
     user.email = email
+    user.mobile = mobile
     await user.save()
+
     res.status(200).json({
         success: true,
         message: "Tài khoản của bạn đã đăng kí thành công."
@@ -73,18 +84,18 @@ const login = asyncHandler(async (req, res) => {
     const user = await User.findOne({ email })
     
     // validate email and password
-    if (!user) throw new Error("user not found")
-    if (!await user.isCorrectPassword(password)) throw new Error("somethings went wrong")
+    if (!user) throw new Error("Không tìm thấy tài khoản của bạn.")
+    if (!await user.isCorrectPassword(password)) throw new Error("Mật khẩu của bạn không đúng.")
 
     // create access token and refresh token
     const accessToken = generateAccessToken(user._id.toString(), user.role)
     const refreshToken = generateRefreshToken(user._id.toString())
 
     // update access token in res
-    const userUpdate = await User.findByIdAndUpdate(user._id,{refreshToken},{new: true}).select("-password -createdAt -updatedAt -refreshToken")
-    userUpdate.accessToken = accessToken
+    const userUpdate = await User.findByIdAndUpdate(user._id,{accessToken,refreshToken},{new: true}).select("-password -createdAt -updatedAt -refreshToken")
+
     // add refresh in cookie
-    res.cookie("refreshToken", refreshToken, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true })
+    res.cookie("refreshToken",refreshToken, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true })
     
     res.status(200).json({
         success: userUpdate ? true : false,
@@ -127,6 +138,33 @@ const getUsers = asyncHandler(async (req, res) => {
     })
 })
 
+const refreshToken = asyncHandler(async (req, res) => { 
+    const refreshToken = req.cookies['refreshToken']
+    console.log(refreshToken)
+    if (!refreshToken) throw new Error("Có lỗi đã xảy ra")
+
+    // check user
+    const user = await User.findOne({refreshToken})
+    if (!user) throw new Error("Không tìm thấy tài khoản.")
+
+    // create access token and refresh token
+    const newAccessToken = generateAccessToken(user._id.toString(), user.role)
+    const newRefreshToken = generateRefreshToken(user._id.toString())
+    user.accessToken = newAccessToken
+    user.refreshToken = newRefreshToken
+    await user.save()
+
+    res.clearCookie("refreshToken",{httpOnly: true, secure: true})
+    res.cookie("refreshToken", newAccessToken,{httpOnly: true, secure: true, maxAge: Date.now() + 7 * 24 * 60 * 60 * 1000})
+
+    res.status(200).json({
+        success: true,
+        accessToken: newAccessToken
+    })
+    
+
+})
+
 const updateUser = asyncHandler(async (req, res) => { 
     const { _id } = req.user
     const userUpdate = await User.findByIdAndUpdate(_id, req.body, { new: true }).select("-password -refreshToken")
@@ -135,10 +173,11 @@ const updateUser = asyncHandler(async (req, res) => {
         user: userUpdate ? a : "somethings went wrong"
     })
 })
+
 const forgotPassword = asyncHandler(async (req, res) => { 
     const { email } = req.body
     const user = await User.findOne({email})
-    if (!user) throw new Error("user not found")
+    if (!user) throw new Error("Không tìm thấy tài khoản.")
 
     // create password reset token
     const passwordResetToken = await user.generatePasswordResetToken()
@@ -150,27 +189,30 @@ const forgotPassword = asyncHandler(async (req, res) => {
                 Nhấn vào nút dưới đây để thay đổi mật khẩu, có thời gian hiệu lực là 5 phút.
             </p>
             <div>
-                <a href="http://localhost:6000/${passwordResetToken}" style="display:inline-block ;padding:12px 20px; background-color: #f14343; font-size: 18px; text-decoration: none; color: white">Reset password</a>
+                <a href="${env.CLIENT_URL}/forgotPassword/${passwordResetToken}" style="display:inline-block ;padding:12px 20px; background-color: #f14343; font-size: 18px; text-decoration: none; color: white">Reset password</a>
             </div>
         </div>
     `
 
     // generate email send 
-    const isSendEmail = generateSendEmail(html, user.email)
+    await generateSendEmail(html, user.email)
 
     res.status(200).json({
-        success: isSendEmail ? true : false,
-        message: isSendEmail ? "send code success" : "send code error"
+        success: true,
+        message: "Hãy kiểm tra email của bạn."
     })
 })
 
 const changePassword = asyncHandler(async (req, res) => {
     const { password, token } = req.body
+
     const passwordResetToken = await crypto.createHash('sha256').update(token).digest("hex")
-    
     // check code change password
-    const user = await User.findOne({ passwordResetToken ,passwordChangeAt:{$gte: Date.now()}}).select("-password -refreshToken")
-    if (!user) throw new Error("something went wrong")
+    const user = await User.findOne({ passwordResetToken, passwordResetExpires: { $gte: Date.now() } })
+    if (!user) throw new Error("Bạn đã hết thời gian đặt lại mật khẩu.")
+
+    // check password already exists
+    if (await user.isCorrectPassword(password)) throw new Error("Mật khẩu của bạn không được trùng với mật khẩu cũ.")
 
     // update password
     user.password = password
@@ -181,7 +223,7 @@ const changePassword = asyncHandler(async (req, res) => {
 
     res.status(200).json({
         success: true,
-        user: "changed password"
+        message: "Thay đổi mật khẩu thành công."
     })
 
 })
@@ -220,6 +262,15 @@ const addProductCart = asyncHandler(async (req, res) => {
     const user = await User.findById(_id).select("cart").populate("cart.product", "title")
     const alreadyProduct = user.cart.find(prd => prd.product._id.toString() === req.body.product && prd.size === +req.body.size)
     
+    // check quantity product with size
+    const {sizes} = await Product.findById(req.body.product)
+    if (!sizes) throw new Error("product not found")
+    for (let i = 0; i < sizes.length; i++) {
+        if (sizes[i].size == req.body.size) {
+            if(sizes[i].quantity < req.body.quantity) throw new Error(`Số lượng giày với size ${sizes[i].size} không đủ, bạn hãy giảm bớt số lượng xuống.`)
+        }
+    }
+
     if (alreadyProduct) {
         //when product already exists with size equal
         res.status(200).json({
@@ -240,6 +291,15 @@ const updateCart = asyncHandler(async (req, res) => {
     const { _id } = req.user
     if (Object.keys(req.body).length === 0) throw new Error("missing input")
 
+    // check quantity product with size
+    const {sizes} = await Product.findById(req.body.product)
+    if (!sizes) throw new Error("product not found")
+    for (let i = 0; i < sizes.length; i++) {
+        if (sizes[i].size == req.body.size) {
+            if(sizes[i].quantity < req.body.quantity) throw new Error(`Số lượng giày với size ${sizes[i].size} không đủ, bạn hãy giảm bớt số lượng xuống.`)
+        }
+    }
+
     const user = await User.findById(_id).select("cart")
     const alreadyProduct = user.cart.find(elm => elm.product.toString() === req.body.product)
 
@@ -256,6 +316,28 @@ const updateCart = asyncHandler(async (req, res) => {
             userUpdate: "product no existed in cart"
         })
     }
+})
+
+const deleteProductCart = asyncHandler(async (req, res) => {
+    const { cid } = req.params
+    const { _id } = req.user
+    const user = await User.findByIdAndUpdate(_id, { $pull: { cart: { _id: cid } } }, { new: true })
+
+    res.status(200).json({
+        success: user ? true : false,
+        message: user ? "delete product cart successfully" : "something went wrong"
+    })
+
+    
+})
+
+const getCart = asyncHandler(async (req, res) => { 
+    const { _id } = req.user
+    const cart = await User.findById(_id).select("cart").populate("cart.product","title price images")
+    res.status(200).json({
+        success: cart ? true : false,
+        cart: cart ? cart : "something went wrong"
+    })
 })
 
 const updateAddress = asyncHandler(async (req, res) => { 
@@ -294,5 +376,8 @@ export {
     updateAddress,
     addProductCart,
     updateAvatar,
-    finalRegister
+    finalRegister,
+    refreshToken,
+    getCart,
+    deleteProductCart
 }

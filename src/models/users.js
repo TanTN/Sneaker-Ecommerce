@@ -33,6 +33,7 @@ var userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
+        enum: ["Admin", "User"],
         default: "User"
     },
     cart: [{
@@ -62,6 +63,9 @@ var userSchema = new mongoose.Schema({
     refreshToken: {
         type: String
     },
+    accessToken: {
+        type: String
+    },
     passwordChangeAt: {
         type: String
     },
@@ -73,11 +77,13 @@ var userSchema = new mongoose.Schema({
     }
 
 }, {
-    timestamps: true
+    timestamps: true,
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true }
 }
 );
 userSchema.pre('save', async function (next) {
-    console.log(this.isModified('password'))
+
     if (!this.isModified('password')) { 
         next();
     }

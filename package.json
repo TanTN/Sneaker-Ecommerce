@@ -6,13 +6,12 @@
   "engines": {
     "node": "18.x"
   },
-  "type": "module",
   "scripts": {
     "lint": "eslint src --ext js --report-unused-disable-directives --max-warnings 0",
     "clean": "del build",
     "build-babel": "babel ./src -d ./build/src",
     "build": "babel ./src -d ./build/src",
-    "production": "npm run clean && npm run build-babel && node ./build/src/server.js",
+    "production": "npm run clean && npm run build-babel && node index.js",
     "dev": "nodemon --exec babel-node index.js",
     "start": "node index.js"
   },

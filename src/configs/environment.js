@@ -9,5 +9,7 @@ export const env = {
     EMAIL_NAME: process.env.EMAIL_NAME,
     CLOUDINARY_NAME: process.env.CLOUDINARY_NAME,
     CLOUDINARY_KEY:process.env.CLOUDINARY_KEY,
-    CLOUDINARY_SECRET:process.env.CLOUDINARY_SECRET,
+    CLOUDINARY_SECRET: process.env.CLOUDINARY_SECRET,
+    CLIENT_URL: process.env.CLIENT_URL,
+    PAGE_LIMIT: process.env.PAGE_LIMIT,
 }

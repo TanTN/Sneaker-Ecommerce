@@ -7,6 +7,6 @@ routes.post("/",verifyToken, ctrl.createOrder)
 routes.get("/",verifyToken, ctrl.getOrder)
 routes.get("/allOrder",[verifyToken, isAdmin], ctrl.getOrders)
 routes.put("/:oid",[verifyToken, isAdmin], ctrl.updateStatus)
-routes.delete("/:oid",verifyToken, ctrl.createOrder)
+routes.delete("/:oid",verifyToken, ctrl.deleteOrder)
 
 export default routes

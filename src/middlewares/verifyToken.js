@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 import {env} from "../configs/environment.js"
 const verifyToken = (req, res, next) => {
-    if (req?.headers?.authorization.startsWith('Bearer ')) {
+    if (req?.headers?.authorization?.startsWith('Bearer ')) {
 
         const accessToken = req?.headers?.authorization.split(' ')[1]
         jwt.verify(accessToken, env.SECRET_KEY, (err, decode) => {
@@ -14,11 +14,6 @@ const verifyToken = (req, res, next) => {
             req.user = decode
             next()
         })
-
-        res.status(401).json({
-            success: false,
-            message: 'invalid access token'
-        })
     } else {
         res.status(401).json({
             success: false,
@@ -26,11 +21,12 @@ const verifyToken = (req, res, next) => {
         })
     }
 }
+
 const isAdmin = (req, res, next) => { 
     if (req?.user?.role != 'Admin') throw new Error("You must be Admin")
     next()
 }
 export {
     verifyToken,
-    isAdmin
+    isAdmin,
 }

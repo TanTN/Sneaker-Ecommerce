@@ -9,7 +9,13 @@ var productSchema = new mongoose.Schema({
     },
     price:{
         type:String,
-        required:true,
+    },
+    priceDel:{
+        type:String,
+    },
+    benefit: {
+        title: { type: String },
+        contents: [{type: String}]
     },
     slug:{
         type:String,
@@ -25,10 +31,19 @@ var productSchema = new mongoose.Schema({
         type: String,
         required:true,
     },
+    code: {
+        type: String,
+    },
     category: {
         type: String,
     },
     description:{
+        type:String,
+    },
+    onSale:{
+        type:String,
+    },
+    ribbonSale:{
         type:String,
     },
     images: [{
@@ -42,8 +57,11 @@ var productSchema = new mongoose.Schema({
         
     }],
     sizes: [{
-        size: {type:String},
-        quantity:{ type: Number}
+        size: {
+            type: String,
+            enum:["35","36","37","38","39","40","41","42","43","44","45","46","47"]
+        },
+        quantity:{ type: Number,default: 10 },
     }]
 }, {
     timestamps: true
