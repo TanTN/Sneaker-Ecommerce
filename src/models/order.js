@@ -2,16 +2,13 @@ import mongoose from "mongoose"; // Erase if already required
 
 // Declare the Schema of the Mongo model
 var orderSchema = new mongoose.Schema({
-    products:[{
-        product: { type: mongoose.Types.ObjectId },
-        title:{ type: String},
+    product:[{
+        product: {
+            type: mongoose.Types.ObjectId,
+            ref:"Product"
+        },
         size: { type: String },
         quantity: { type: String },
-        images: [{
-            type: String
-        }],
-        price: { type: String}
-
     }],
     total: { type: String },
     orderBy: {
@@ -20,8 +17,8 @@ var orderSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ["Canceled", "Processing", "Succeed"],
-        default: "Processing"
+        enum: ["Finished", "In Progress", "Waiting"],
+        default: "Finished"
     }
 });
 

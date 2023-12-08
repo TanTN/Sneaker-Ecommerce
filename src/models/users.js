@@ -3,28 +3,28 @@ import Bcrypt from "bcrypt"; // Erase if already required
 import crypto from "crypto"; // Erase if already required
 // Declare the Schema of the Mongo model
 var userSchema = new mongoose.Schema({
-    name:{
-        type:String,
-        required:true,
+    name: {
+        type: String,
+        required: true,
     },
-    email:{
-        type:String,
-        required:true,
-        unique:true,
+    email: {
+        type: String,
+        required: true,
+        unique: true,
     },
-    mobile:{
-        type:String,
-        required:true,
-        unique:true,
+    mobile: {
+        type: String,
+        required: true,
+        unique: true,
     },
-    password:{
-        type:String,
-        required:true,
+    password: {
+        type: String,
+        required: true,
     },
     avatar: {
         path: {
             type: String,
-            default:"https://th.bing.com/th/id/OIP.T5DKycaaS4zk2hul0woRWQHaHa?rs=1&pid=ImgDetMain"
+            default: "https://th.bing.com/th/id/OIP.T5DKycaaS4zk2hul0woRWQHaHa?rs=1&pid=ImgDetMain"
         },
         filename: {
             type: String
@@ -47,14 +47,49 @@ var userSchema = new mongoose.Schema({
         size: {
             type: Number,
         },
-        color: {
-            type: String,
-            enum: ["Blue", "Green", "Yellow"],
-            default: "Yellow"
-        }
+        // color: {
+        //     type: String,
+        //     enum: ["Blue", "Green", "Yellow"],
+        //     default: "Yellow"
+        // }
     }],
     address: {
-        type: String
+        province: {
+            label: {
+                type: String,
+                default: ""
+            },
+            value: {
+                type: Number,
+            }
+            
+        },
+        district: {
+            label: {
+                type: String,
+                default: ""
+            },
+            value: {
+                type: Number,
+            }
+            
+        },
+        
+        ward: {
+            label: {
+                type: String,
+                default: ""
+            },
+            value: {
+                type: Number,
+            }
+            
+        },
+        addressDetail: {
+            type: String,
+            default:""
+        }
+
     },
     isBlocked: {
         type: Boolean,

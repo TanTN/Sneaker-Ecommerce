@@ -170,7 +170,7 @@ const updateUser = asyncHandler(async (req, res) => {
     const userUpdate = await User.findByIdAndUpdate(_id, req.body, { new: true }).select("-password -refreshToken")
     res.status(200).json({
         success: userUpdate ? true : false,
-        user: userUpdate ? a : "somethings went wrong"
+        user: userUpdate ? userUpdate : "somethings went wrong"
     })
 })
 
@@ -289,6 +289,8 @@ const addProductCart = asyncHandler(async (req, res) => {
 })
 const updateCart = asyncHandler(async (req, res) => {
     const { _id } = req.user
+    const { pid } = req.params
+    console.log(req.body)
     if (Object.keys(req.body).length === 0) throw new Error("missing input")
 
     // check quantity product with size
@@ -301,14 +303,23 @@ const updateCart = asyncHandler(async (req, res) => {
     }
 
     const user = await User.findById(_id).select("cart")
-    const alreadyProduct = user.cart.find(elm => elm.product.toString() === req.body.product)
+    const alreadyProduct = user.cart.find(elm => elm._id.toString() === pid)
 
     if (alreadyProduct) {
         // update product in card
-        const userUpdate = await User.updateOne({cart:{$elemMatch:alreadyProduct}},{$set:{"cart.$.size":req.body.size,"cart.$.quantity":req.body.quantity}}, { new: true })
+        const newCart = user.cart.map(elm => {
+            if (elm._id.toString() === pid) {
+                return {id:elm._id,product:elm.product,size:req.body.size,quantity:req.body.quantity}
+            }
+            return {id:elm._id,product:elm.product,size:elm.size,quantity:elm.quantity}
+        })
+        console.log(newCart)
+        const userUpdate = await User.findByIdAndUpdate(_id, { cart: newCart }, { new: true })
+        
+        // await User.updateOne({ cart: { $elemMatch: alreadyProduct } }, { $set: { "cart.$.size": req.body.size, "cart.$.quantity": req.body.quantity } },{new: true})
         res.status(200).json({
-            success: user ? true : false,
-            userUpdate: userUpdate ? "update cart successfully" : "something went wrong"
+            success: userUpdate ? true : false,
+            userUpdate: userUpdate ? userUpdate : "something went wrong"
         })
     } else {
         res.status(200).json({
@@ -316,6 +327,18 @@ const updateCart = asyncHandler(async (req, res) => {
             userUpdate: "product no existed in cart"
         })
     }
+})
+
+const getProductToCart = asyncHandler(async (req, res) => { 
+    const { _id } = req.user
+    const { slug } = req.params
+    const user = await User.findById(_id).select("cart").populate("cart.product")
+    const product = await user?.cart?.find(elm => elm.product.slug == slug) 
+    if (!product) throw new Error("Product not found")
+    res.status(200).json({
+        success: true,
+        product : product 
+    })
 })
 
 const deleteProductCart = asyncHandler(async (req, res) => {
@@ -333,7 +356,7 @@ const deleteProductCart = asyncHandler(async (req, res) => {
 
 const getCart = asyncHandler(async (req, res) => { 
     const { _id } = req.user
-    const cart = await User.findById(_id).select("cart").populate("cart.product","title price images")
+    const cart = await User.findById(_id).select("cart").populate("cart.product","title price images slug brand")
     res.status(200).json({
         success: cart ? true : false,
         cart: cart ? cart : "something went wrong"
@@ -352,6 +375,11 @@ const updateAddress = asyncHandler(async (req, res) => {
 
 const updateAvatar = asyncHandler(async (req, res) => { 
     const { _id } = req.user
+    const { filename: filenameRemove } = req.body
+    if (filenameRemove) {
+        cloudinary.v2.api.delete_resources(filenameRemove)
+    }
+
     const { path, filename } = req.file
     if (!req.file) throw new Error("no image avatar")
     const avatar = { path, filename }
@@ -379,5 +407,6 @@ export {
     finalRegister,
     refreshToken,
     getCart,
-    deleteProductCart
+    deleteProductCart,
+    getProductToCart
 }

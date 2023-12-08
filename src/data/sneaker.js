@@ -34,6 +34,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Air Force 1",
+        category:"NIKE",
         code: "NAF44",
         quickly: {
             title: "Lợi ích khi mua Nike Air Force 1 Trắng Full White Like Auth replica 1:1 tại Shop giày Replica™",
@@ -79,6 +80,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Air Force 1",
+        category:"NIKE",
         code: "NAF47",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Force 1 ’07 AN20 White Black Swoosh Like Auth replica 1:1 tại Shop giày Replica™",
@@ -123,6 +125,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Air Force 1",
+        category:"NIKE",
         code: "NAF99",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Force 1 Low ‘Valentine’s Day’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -171,6 +174,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Air Force 1",
+        category:"NIKE",
         code: "NAF101",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Force 1 ’07 LV8 ’40th Anniversary – White Black’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -218,6 +222,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Air Force 1",
+        category:"NIKE",
         code: "NAF03",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Force 1 Trắng Full White Siêu Cấp replica 1:1 tại Shop giày Replica™",
@@ -251,6 +256,7 @@ const dataSneaker = [
         priceDel: "1,500,000đ",
         sizes: ["36", "37", "38", "39", "40", "41", "42", "43"],
         brand: "Air Force 1",
+        category:"NIKE",
         code: "NAF34",
         quickly: {
             title: "Lợi ích khi mua Nike Air Force 1 07 LX “UV Reactive” (đổi màu full) Like Auth replica 1:1 tại Shop giày Replica™",
@@ -295,6 +301,7 @@ const dataSneaker = [
             "46",
         ],
         brand: "Air Force 1",
+        category:"NIKE",
         code: "NAF119",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Force 1 Low ‘Just Do It Denim’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -338,6 +345,7 @@ const dataSneaker = [
             "46",
         ],
         brand: "Air Force 1",
+        category:"NIKE",
         code: "NAF118",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Force 1 ’07 LX ‘Sisterhood White Metallic Silver’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -383,6 +391,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Jordan 4",
+        category:"NIKE",
         code: "NAJ118",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Jordan 4 Retro Kaws Like Auth replica 1:1 tại Shop giày Replica™",
@@ -427,6 +436,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Jordan 4",
+        category:"NIKE",
         code: "NAJ186",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Jordan 4 Retro ‘Pine Green’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -463,6 +473,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Jordan 4",
+        category:"NIKE",
         code: "NAJ240",
         onSale: "-44%",
         ribbonSale: "",
@@ -489,6 +500,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Air Jordan",
+        category:"NIKE",
         code: "NAJ216",
         onSale: "-57%",
         ribbonSale: "",
@@ -522,6 +534,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Jordan 4",
+        category:"NIKE",
         code: "NAJ215",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Jordan 4 Snorlax Custom Like Auth replica 1:1 tại Shop giày Replica™",
@@ -573,6 +586,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Jordan 4",
+        category:"NIKE",
         code: "NAJ212",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Union LA x Air Jordan 4 Retro ‘Off Noir’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -623,6 +637,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Jordan 4",
+        category:"NIKE",
         code: "NAJ211",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Jordan 4 Retro SE Craft ‘Medium Olive’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -669,6 +684,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Jordan 4",
+        category:"NIKE",
         code: "NAJ149",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Jordan 4 Retro ‘Military Black’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -714,6 +730,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Air Jordan",
+        category:"NIKE",
         code: "NAJ176",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Jordan 1 Low Travis Scott ‘Olive’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -764,6 +781,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Air Jordan",
+        category:"NIKE",
         code: "NAJ170",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Jordan 1 Retro High OG ‘Lost & Found’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -809,6 +827,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Air Jordan",
+        category:"NIKE",
         code: "NAJ167",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Jordan 1 Retro Low OG SP Travis Scott ‘Black Phantom’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -865,6 +884,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Air Jordan",
+        category:"NIKE",
         code: "NAJ101",
         quickly: {
             title: "Lợi ích khi mua Nike Air Jordan 1 Retro Low OG SP Travis Scott Like Auth replica 1:1 tại Shop giày Replica™",
@@ -913,6 +933,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Air Jordan",
+        category:"NIKE",
         code: "NAJ90",
         quickly: {
             title: "Lợi ích khi mua Nike Air Jordan 1 Low Travis Scott x Fragment Like Auth replica 1:1 tại Shop giày Replica™",
@@ -959,6 +980,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Air Jordan",
+        category:"NIKE",
         code: "NAJ210",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Jordan 1 Low Travis Scott ‘Golf’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1005,6 +1027,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Air Jordan",
+        category:"NIKE",
         code: "NAJ141",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Air Jordan 1 Low Travis Scott ‘Reverse Mocha’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1058,6 +1081,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Nike SB Dunk",
+        category:"NIKE",
         code: "NAF43",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Dunk Low Retro White Black Like Auth ( Xả Lỗ ) replica 1:1 tại Shop giày Replica™",
@@ -1105,6 +1129,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Nike SB Dunk",
+        category:"NIKE",
         code: "NAF84",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Dunk Low ‘Grey Fog’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1140,6 +1165,7 @@ const dataSneaker = [
             "46",
         ],
         brand: "Nike SB Dunk",
+        category:"NIKE",
         code: "NAF117",
         onSale: "-28%",
         ribbonSale: "",
@@ -1184,6 +1210,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Nike SB Dunk",
+        category:"NIKE",
         code: "NAF110",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Off-White x Dunk Low ‘Lot 02 Of 50’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1220,6 +1247,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Nike SB Dunk",
+        category:"NIKE",
         code: "NAF109",
         onSale: "-48%",
         ribbonSale: "",
@@ -1261,6 +1289,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Nike SB Dunk",
+        category:"NIKE",
         code: "NAF108",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Dunk Low Off-White Pine Green Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1312,6 +1341,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Nike SB Dunk",
+        category:"NIKE",
         code: "NAF107",
         quickly: {
             title: "Lợi ích khi mua Giày Nike Dunk Low SE Lottery Pack Grey Fog Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1360,6 +1390,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Nike SB Dunk",
+        category:"NIKE",
         code: "NAF106",
         quickly: {
             title: "Lợi ích khi mua Nike SB Dunk Low Ben & Jerry’s Chunky Dunky Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1383,6 +1414,7 @@ const dataSneaker = [
         priceDel: "2,000,000đ",
         sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
         brand: "UltraBoost 22",
+        category:"ADIDAS",
         code: "N/A",
         onSale: "-51%",
         ribbonSale: "",
@@ -1407,6 +1439,7 @@ const dataSneaker = [
         priceDel: "1,900,000đ",
         sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
         brand: "UltraBoost 22",
+        category:"ADIDAS",
         code: "AUB806",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas UltraBoost 22 White Blue Tint Orange Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1441,6 +1474,7 @@ const dataSneaker = [
         priceDel: "1,900,000đ",
         sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
         brand: "UltraBoost 22",
+        category:"ADIDAS",
         code: "AUB805",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas UltraBoost 22 Triple White Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1475,6 +1509,7 @@ const dataSneaker = [
         priceDel: "1,900,000đ",
         sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
         brand: "UltraBoost 22",
+        category:"ADIDAS",
         code: "AUB804",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas UltraBoost 22 Magic Grey Turbo Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1509,6 +1544,7 @@ const dataSneaker = [
         priceDel: "1,900,000đ",
         sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
         brand: "UltraBoost 22",
+        category:"ADIDAS",
         code: "AUB803",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas UltraBoost 22 Triple Black Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1541,6 +1577,7 @@ const dataSneaker = [
         priceDel: "1,900,000đ",
         sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
         brand: "UltraBoost 22",
+        category:"ADIDAS",
         code: "AUB802",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas UltraBoost 22 Core Black White Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1575,6 +1612,7 @@ const dataSneaker = [
         priceDel: "1,800,000đ",
         sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
         brand: "UltraBoost 22",
+        category:"ADIDAS",
         code: "AUB801",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas UltraBoost 22 Core Black Magic Grey Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1623,6 +1661,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Yeezy 350 V2",
+        category:"ADIDAS",
         code: "AY52",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas Yeezy 350 V2 Yecheil Reflective Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1666,6 +1705,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Yeezy 350 V2",
+        category:"ADIDAS",
         code: "AY98",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas Yeezy Boost 350 V2 ‘Salt’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1702,6 +1742,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Yeezy 350 V2",
+        category:"ADIDAS",
         code: "AY97",
         onSale: "-70%",
         ribbonSale: "",
@@ -1737,6 +1778,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Yeezy 350 V2",
+        category:"ADIDAS",
         code: "AY73",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas Yeezy Boost 350 V2 ‘Slate Core Black’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1786,6 +1828,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Yeezy 350 V2",
+        category:"ADIDAS",
         code: "AY69",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas Yeezy Boost 350 V2 ‘Bred’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1838,6 +1881,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Yeezy 350 V2",
+        category:"ADIDAS",
         code: "AY05",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas Yeezy Boost 350 V2 ‘Zebra’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1887,6 +1931,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Yeezy 350 V2",
+        category:"ADIDAS",
         code: "AY08",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas Yeezy 350 V2 Beluga Like Auth replica 1:1 tại Shop giày Replica™",
@@ -1932,6 +1977,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Yeezy 350 V2",
+        category:"ADIDAS",
         code: "AY30",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas Yeezy 350 V2 Static Đen (Black) Like Auth replica 1:1 tại Shop giày Replica™",
@@ -2032,6 +2078,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "YEEZY FOAM RUNNER",
+        category:"ADIDAS",
         code: "AY96",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas Yeezy Foam Runner ‘MX Carbon’ replica 1:1 tại Shop giày Replica™",
@@ -2078,6 +2125,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "YEEZY FOAM RUNNER",
+        category:"ADIDAS",
         code: "AY95",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas Adifom Superstar ‘Black White’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -2125,6 +2173,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "YEEZY FOAM RUNNER",
+        category:"ADIDAS",
         code: "AY94",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas Adifom Superstar ‘White Black’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -2173,6 +2222,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "YEEZY FOAM RUNNER",
+        category:"ADIDAS",
         code: "AY93",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas AdiFOM Q ‘Black Carbon’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -2209,6 +2259,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "YEEZY FOAM RUNNER",
+        category:"ADIDAS",
         code: "AY92",
         onSale: "-41%",
         ribbonSale: "",
@@ -2247,6 +2298,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "YEEZY FOAM RUNNER",
+        category:"ADIDAS",
         code: "AY87",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas AdiFOM Q “Wonder White/Core Black” Like Auth replica 1:1 tại Shop giày Replica™",
@@ -2297,6 +2349,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Yeezy Slide",
+        category:"ADIDAS",
         code: "AY104",
         quickly: {
             title: "Lợi ích khi mua Dép Adidas Yeezy Slide ‘Slate Grey’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -2345,6 +2398,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Yeezy Slide",
+        category:"ADIDAS",
         code: "AY103",
         quickly: {
             title: "Lợi ích khi mua Dép Adidas Yeezy Slide ‘Slate Marine’ ( 2023 vân nhám) Like Auth replica 1:1 tại Shop giày Replica™",
@@ -2396,6 +2450,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Yeezy Slide",
+        category:"ADIDAS",
         code: "AY101",
         quickly: {
             title: "Lợi ích khi mua Dép Adidas Yeezy Slide ‘Azure’ ( 2023 vân nhám ) Like Auth replica 1:1 tại Shop giày Replica™",
@@ -2444,6 +2499,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Yeezy Slide",
+        category:"ADIDAS",
         code: "AY100",
         quickly: {
             title: "Lợi ích khi mua Dép Adidas adiFOM Stan Smith Mule ‘Core Black’ replica 1:1 tại Shop giày Replica™",
@@ -2486,6 +2542,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "YEEZY FOAM RUNNER",
+        category:"ADIDAS",
         code: "AY102",
         quickly: {
             title: "Lợi ích khi mua Giày Adidas Yeezy Foam Runner ‘MX Cinder’ replica 1:1 tại Shop giày Replica™",
@@ -2535,6 +2592,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Yeezy Slide",
+        category:"ADIDAS",
         code: "AY99",
         quickly: {
             title: "Lợi ích khi mua Dép Adidas Adifom Stan Smith Mule ‘Wonder Taupe’ replica 1:1 tại Shop giày Replica™",
@@ -2582,6 +2640,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Yeezy Slide",
+        category:"ADIDAS",
         code: "AY88",
         quickly: {
             title: "Lợi ích khi mua Dép Adidas Yeezy Slide ‘Onyx Black’ ( 2022 vân Nhám ) Like Auth replica 1:1 tại Shop giày Replica™",
@@ -2630,6 +2689,7 @@ const dataSneaker = [
             "46",
         ],
         brand: "Yeezy Slide",
+        category:"ADIDAS",
         code: "AY86",
         quickly: {
             title: "Lợi ích khi mua Dép Adidas Yeezy Slide ‘Resin’ ( 2022 vân Nhám ) Like Auth replica 1:1 tại Shop giày Replica™",
@@ -2666,6 +2726,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Yeezy Slide",
+        category:"ADIDAS",
         code: "AY85",
         onSale: "-68%",
         ribbonSale: "",
@@ -2699,6 +2760,7 @@ const dataSneaker = [
             "46",
         ],
         brand: "Giày MLB",
+        category:"MLB",
         code: "MLB72",
         quickly: {
             title: "Lợi ích khi mua Giày MLB Chunky Liner Mid Denim New York Yankees Gray Like Auth replica 1:1 tại Shop giày Replica™",
@@ -2720,6 +2782,7 @@ const dataSneaker = [
         ],
         sizes: [],
         brand: "Giày MLB",
+        category:"MLB",
         code: "MLB71",
         onSale: "",
         ribbonSale: "",
@@ -2757,6 +2820,7 @@ const dataSneaker = [
             "46",
         ],
         brand: "Giày MLB",
+        category:"MLB",
         code: "MLB70",
         quickly: {
             title: "Lợi ích khi mua Giày MLB Big Ball Chunky Beige Red ‘C’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -2792,6 +2856,7 @@ const dataSneaker = [
             "46",
         ],
         brand: "Giày MLB",
+        category:"MLB",
         code: "MLB69",
         onSale: "-40%",
         ribbonSale: "",
@@ -2836,6 +2901,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Alexander Mcqueen",
+        category:"LUXURY",
         code: "AMS39",
         quickly: {
             title: "Lợi ích khi mua Giày Alexander Mcqueen Trắng Gót Chữ Trắng Nổi Like Auth replica 1:1 tại Shop giày Replica™",
@@ -2882,6 +2948,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Alexander Mcqueen",
+        category:"LUXURY",
         code: "AMS38",
         quickly: {
             title: "Lợi ích khi mua Giày Alexander Mcqueen Gót Blue Trong Like Auth replica 1:1 tại Shop giày Replica™",
@@ -2928,6 +2995,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Alexander Mcqueen",
+        category:"LUXURY",
         code: "AMS37",
         quickly: {
             title: "Lợi ích khi mua Giày Alexander Mcqueen Gót Tím Trong Like Auth replica 1:1 tại Shop giày Replica™",
@@ -2974,6 +3042,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Alexander Mcqueen",
+        category:"LUXURY",
         code: "AMS36",
         quickly: {
             title: "Lợi ích khi mua Giày Alexander Mcqueen Trắng Gót Nâu Trong Like Auth replica 1:1 tại Shop giày Replica™",
@@ -3019,6 +3088,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Alexander Mcqueen",
+        category:"LUXURY",
         code: "AMS35",
         quickly: {
             title: "Lợi ích khi mua Giày Alexander Mcqueen Trắng Gót Hồng Vân Cá Sấu Like Auth replica 1:1 tại Shop giày Replica™",
@@ -3065,6 +3135,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Alexander Mcqueen",
+        category:"LUXURY",
         code: "AMS34",
         quickly: {
             title: "Lợi ích khi mua Giày Alexander Mcqueen Trắng Gót Be Vân Cá Sấu Like Auth replica 1:1 tại Shop giày Replica™",
@@ -3111,6 +3182,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Alexander Mcqueen",
+        category:"LUXURY",
         code: "AMS33",
         quickly: {
             title: "Lợi ích khi mua Giày Alexander Mcqueen Gót Xám Bóng Like Auth replica 1:1 tại Shop giày Replica™",
@@ -3156,6 +3228,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Alexander Mcqueen",
+        category:"LUXURY",
         code: "AMS32",
         quickly: {
             title: "Lợi ích khi mua Giày Alexander Mcqueen Gót Blue Baby Bóng Like Auth replica 1:1 tại Shop giày Replica™",
@@ -3201,6 +3274,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Dior",
+        category:"LUXURY",
         code: "D86",
         quickly: {
             title: "Lợi ích khi mua Giày Dior B27 Low Blue Grey White Beige Dior Oblique Jacquard Like Auth replica 1:1 tại Shop giày Replica™",
@@ -3245,6 +3319,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Dior",
+        category:"LUXURY",
         code: "D85",
         quickly: {
             title: "Lợi ích khi mua Giày Dior B27 Low Red White Dior Oblique Galaxy Leather with Rabbit Motif Like Auth replica 1:1 tại Shop giày Replica™",
@@ -3290,6 +3365,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Dior",
+        category:"LUXURY",
         code: "D84",
         quickly: {
             title: "Lợi ích khi mua Giày Dior B27 Gold Tone Dior Oblique Jacquard Like Auth replica 1:1 tại Shop giày Replica™",
@@ -3335,6 +3411,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Dior",
+        category:"LUXURY",
         code: "D83",
         quickly: {
             title: "Lợi ích khi mua Giày Dior B27 Low Red Grey Dior Oblique Jacquard Like Auth replica 1:1 tại Shop giày Replica™",
@@ -3380,6 +3457,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Dior",
+        category:"LUXURY",
         code: "D82",
         quickly: {
             title: "Lợi ích khi mua Giày Dior B27 Low Coffee Cream Black Dior Oblique Jacquard Like Auth replica 1:1 tại Shop giày Replica™",
@@ -3416,6 +3494,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Dior",
+        category:"LUXURY",
         code: "D81",
         onSale: "-33%",
         ribbonSale: "",
@@ -3442,6 +3521,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Dior",
+        category:"LUXURY",
         code: "D80",
         onSale: "-33%",
         ribbonSale: "",
@@ -3468,6 +3548,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Dior",
+        category:"LUXURY",
         code: "D79",
         onSale: "-33%",
         ribbonSale: "",
@@ -3540,6 +3621,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Gucci",
+        category:"LUXURY",
         code: "GS92",
         onSale: "-20%",
         ribbonSale: "",
@@ -3567,6 +3649,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Gucci",
+        category:"LUXURY",
         code: "GS91",
         onSale: "-20%",
         ribbonSale: "",
@@ -3594,6 +3677,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Gucci",
+        category:"LUXURY",
         code: "GS90",
         onSale: "-52%",
         ribbonSale: "",
@@ -3621,6 +3705,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Gucci",
+        category:"LUXURY",
         code: "GS89",
         onSale: "-52%",
         ribbonSale: "",
@@ -3648,6 +3733,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Gucci",
+        category:"LUXURY",
         code: "GS88",
         onSale: "-52%",
         ribbonSale: "",
@@ -3691,6 +3777,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Gucci",
+        category:"LUXURY",
         code: "GS87",
         quickly: {
             title: "Lợi ích khi mua Adidas x Gucci Gazelle ‘Green White’ Like Auth replica 1:1 tại Shop giày Replica™",
@@ -3728,6 +3815,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Gucci",
+        category:"LUXURY",
         code: "GS86",
         onSale: "-20%",
         ribbonSale: "",
@@ -3752,6 +3840,7 @@ const dataSneaker = [
         priceDel: "2,000,000đ",
         sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
         brand: "Giày Louis Vuitton",
+        category:"LUXURY",
         code: "LV08",
         quickly: {
             title: "Lợi ích khi mua Giày Louis Vuitton LV Trainer White Green Monogram Denim Xanh Siêu Cấp replica 1:1 tại Shop giày Replica™",
@@ -3785,6 +3874,7 @@ const dataSneaker = [
         priceDel: "2,000,000đ",
         sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
         brand: "Giày Louis Vuitton",
+        category:"LUXURY",
         code: "LV10",
         quickly: {
             title: "Lợi ích khi mua Giày Louis Vuitton LV Trainer Monogram Denim Black Siêu Cấp replica 1:1 tại Shop giày Replica™",
@@ -3820,6 +3910,7 @@ const dataSneaker = [
         priceDel: "2,000,000đ",
         sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
         brand: "Giày Louis Vuitton",
+        category:"LUXURY",
         code: "LV09",
         quickly: {
             title: "Lợi ích khi mua Giày Louis Vuitton LV Trainer Monogram Denim White Blue Siêu Cấp replica 1:1 tại Shop giày Replica™",
@@ -3875,6 +3966,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Louis Vuitton",
+        category:"LUXURY",
         code: "LV110",
         quickly: {
             title: "Lợi ích khi mua Giày Louis Vuitton LV Trainer#54 Graphic Print White Black Blue Best Quality replica 1:1 tại Shop giày Replica™",
@@ -3920,6 +4012,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Louis Vuitton",
+        category:"LUXURY",
         code: "LV109",
         quickly: {
             title: "Lợi ích khi mua Giày Louis Vuitton LV Trainer Monogram Blue Strass Best Quality replica 1:1 tại Shop giày Replica™",
@@ -3957,6 +4050,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Louis Vuitton",
+        category:"LUXURY",
         code: "LV108",
         onSale: "-24%",
         ribbonSale: "",
@@ -3992,6 +4086,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Louis Vuitton",
+        category:"LUXURY",
         code: "LV106",
         quickly: {
             title: "Lợi ích khi mua Giày Louis Vuitton Lv Trainer #54 Monogram Sọc Beige Best Quality replica 1:1 tại Shop giày Replica™",
@@ -4029,6 +4124,7 @@ const dataSneaker = [
             "47",
         ],
         brand: "Giày Louis Vuitton",
+        category:"LUXURY",
         code: "LV105",
         onSale: "-24%",
         ribbonSale: "",
