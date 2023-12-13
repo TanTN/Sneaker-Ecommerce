@@ -25,7 +25,7 @@ const ON_SERVER = () => {
     app.use(express.json())
     app.use(express.urlencoded({ extended: true}))
     app.use(cors({
-        origin: "http://localhost:3000",
+        origin: env.CLIENT_URL,
         methods: "GET,PUT,POST,DELETE",
         preflightContinue: false,
         credentials: true
