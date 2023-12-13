@@ -13,11 +13,11 @@ const createCategory = asyncHandler(async (req, res) => {
     })
 })
 const getCategory = asyncHandler(async (req, res) => {
-    const categorys = await Category.find()
+    const category = await Category.find()
 
     res.status(200).json({
-        success: categorys ? true : false,
-        categorys: categorys ? categorys : "something went wrong"
+        success: category ? true : false,
+        category: category ? category : "something went wrong"
     })
 })
 const updateCategory = asyncHandler(async (req, res) => {

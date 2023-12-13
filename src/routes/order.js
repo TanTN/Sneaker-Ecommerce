@@ -4,8 +4,9 @@ import {verifyToken, isAdmin} from "../middlewares/verifyToken.js"
 const routes = express.Router();
 
 routes.post("/",verifyToken, ctrl.createOrder)
-routes.get("/",verifyToken, ctrl.getOrder)
 routes.get("/allOrder",[verifyToken, isAdmin], ctrl.getOrders)
+routes.get("/",verifyToken, ctrl.getOrder)
+routes.get("/orderUser/:uid",[verifyToken, isAdmin], ctrl.getOrderUser)
 routes.put("/:oid",[verifyToken, isAdmin], ctrl.updateStatus)
 routes.delete("/:oid",verifyToken, ctrl.deleteOrder)
 

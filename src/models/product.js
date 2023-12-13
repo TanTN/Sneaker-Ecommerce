@@ -8,10 +8,10 @@ var productSchema = new mongoose.Schema({
         unique:true,
     },
     price:{
-        type:String,
+        type:Number,
     },
     priceDel:{
-        type:String,
+        type:Number,
     },
     benefit: {
         title: { type: String },

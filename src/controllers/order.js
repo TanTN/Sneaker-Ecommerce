@@ -91,13 +91,22 @@ const deleteOrder = asyncHandler(async (req, res) => {
 })
 
 const getOrder = asyncHandler(async (req, res) => {
-    const {_id} = req.user
-    const order = await Order.find({ orderBy: _id }).populate("product.product")
+    const { _id } = req.user
+    const order = await Order.find({ orderBy:_id }).populate("product.product")
     res.status(200).json({
         success: order ? true : false,
         order: order ? order : "can't get order"
     })
 })
+const getOrderUser = asyncHandler(async (req, res) => {
+    const { uid } = req.params
+    const order = await Order.find({ orderBy:uid }).populate("product.product")
+    res.status(200).json({
+        success: order ? true : false,
+        order: order ? order : "can't get order"
+    })
+})
+
 const getOrders = asyncHandler(async (req, res) => {
     const order = await Order.find()
     res.status(200).json({
@@ -120,5 +129,6 @@ export {
     deleteOrder,
     getOrders,
     getOrder,
-    updateStatus
+    updateStatus,
+    getOrderUser
 }

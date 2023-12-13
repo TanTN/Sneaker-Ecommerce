@@ -14,7 +14,7 @@ const createProduct = asyncHandler(async (req, res) => {
     const product = await Product.create(req.body)
     res.status(200).json({
         success: product ? true : false,
-        product: product ? product : "can't created product"
+        message: product ? "Tạo sản phẩm thành công." : "Tạo sản phẩm thất bại."
     })
 })
 const updateProduct = asyncHandler(async (req, res) => {
@@ -43,10 +43,30 @@ const getProducts = asyncHandler(async (req, res) => {
         products: products ? products : "something went wrong"
     })
 })
+const getProductSearch = asyncHandler(async (req, res) => { 
+    const title = { $regex: req.query.title, $options: "i" }
+    console.log(title)
+    const countProduct = await Product.find({ title }).countDocuments()
+    const productAll = await Product.find({ title })
+    let rangePrice = {}
+    if (countProduct > 1) {
+        const sortProduct = productAll.sort((a, b) => a.price - b.price)
+        rangePrice = { priceMin: sortProduct[0]?.price, priceMax : sortProduct[sortProduct.length - 1]?.price}
+    }
+    const products = await Product.find({ title }).limit(12)
+
+    res.status(200).json({
+        success: products.length > 0 ? true : false,
+        products: products.length > 0 ? products : "Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.",
+        countProduct,
+        ...rangePrice
+    })
+})
 
 const getProductFilter = asyncHandler(async (req, res) => {
-    let queryObj = {...req.query}
-    const excludeFields = ["page", "sort", "filter", "fields"]
+    let queryObj = { ...req.query }
+
+    const excludeFields = ["page", "sort", "filter", "fields","limit"]
     excludeFields.forEach(element => {
         delete queryObj[element]
     });
@@ -58,6 +78,9 @@ const getProductFilter = asyncHandler(async (req, res) => {
     queryString = queryString.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`)
     queryString = JSON.parse(queryString)   
 
+    // count product response
+    const countProduct = await Product.find(queryString).countDocuments()
+    
     const products = Product.find(queryString)
 
     // sort
@@ -73,16 +96,17 @@ const getProductFilter = asyncHandler(async (req, res) => {
     }
 
     // get pages
-    
     const page = req?.query?.page || 1
-    const limit = env.PAGE_LIMIT || 10
-    const pageSize = page - 1 === 0 ? 0 : (page - 1) * limit
+    const limit = req?.query?.limit || env.PAGE_LIMIT 
+    const pageSize = page - 1 === 0 ? 0 : (page - 1) * Number(limit)
     products.skip(pageSize).limit(limit)
-    
+
     products.then((prods) => {
+        
         res.status(200).json({
-            success: true,
-            products: prods
+            success: prods.length > 0 ? true : false,
+            products: prods.length > 0 ? prods : "Không tìm thấy sản phẩm nào khớp với lựa chọn của bạn.",
+            countProduct,
         })
     }).catch((err) => {
         throw new Error(err.message)
@@ -153,5 +177,6 @@ export {
     getProducts,
     getProductFilter,
     updateImages,
-    updateSize
+    updateSize,
+    getProductSearch
 }

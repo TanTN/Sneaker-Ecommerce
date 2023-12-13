@@ -110,7 +110,7 @@ const logout = asyncHandler(async (req, res) => {
     // check refresh token in cookie
     if (!cookie) throw new Error("no refresh token in cookie")
 
-    await User.findByIdAndUpdate(_id, { refreshToken: "", accessToken: "" }, { new: true })
+    await User.findByIdAndUpdate(_id, { refreshToken: ""}, { new: true })
     res.clearCookie("refreshToken", {
         httpOnly: true,
         secure: true
@@ -130,11 +130,21 @@ const getUserCurrent = asyncHandler(async (req, res) => {
         user: user ? user : "somethings went wrong"
     })
 })
+
 const getUsers = asyncHandler(async (req, res) => { 
     const user = await User.find().select("-password -refreshToken")
     res.status(200).json({
         success: user ? true : false,
         users: user ? user : "somethings went wrong"
+    })
+})
+
+const getUser = asyncHandler(async (req, res) => { 
+    const {uid} = req.params
+    const user = await User.findById(uid).select("-password -refreshToken")
+    res.status(200).json({
+        success: user ? true : false,
+        user: user ? user : "somethings went wrong"
     })
 })
 
@@ -155,7 +165,7 @@ const refreshToken = asyncHandler(async (req, res) => {
     await user.save()
 
     res.clearCookie("refreshToken",{httpOnly: true, secure: true})
-    res.cookie("refreshToken", newAccessToken,{httpOnly: true, secure: true, maxAge: Date.now() + 7 * 24 * 60 * 60 * 1000})
+    res.cookie("refreshToken", newRefreshToken,{httpOnly: true, secure: true, maxAge: Date.now() + 7 * 24 * 60 * 60 * 1000})
 
     res.status(200).json({
         success: true,
@@ -290,7 +300,6 @@ const addProductCart = asyncHandler(async (req, res) => {
 const updateCart = asyncHandler(async (req, res) => {
     const { _id } = req.user
     const { pid } = req.params
-    console.log(req.body)
     if (Object.keys(req.body).length === 0) throw new Error("missing input")
 
     // check quantity product with size
@@ -313,7 +322,6 @@ const updateCart = asyncHandler(async (req, res) => {
             }
             return {id:elm._id,product:elm.product,size:elm.size,quantity:elm.quantity}
         })
-        console.log(newCart)
         const userUpdate = await User.findByIdAndUpdate(_id, { cart: newCart }, { new: true })
         
         // await User.updateOne({ cart: { $elemMatch: alreadyProduct } }, { $set: { "cart.$.size": req.body.size, "cart.$.quantity": req.body.quantity } },{new: true})
@@ -331,9 +339,9 @@ const updateCart = asyncHandler(async (req, res) => {
 
 const getProductToCart = asyncHandler(async (req, res) => { 
     const { _id } = req.user
-    const { slug } = req.params
+    const { cid } = req.params
     const user = await User.findById(_id).select("cart").populate("cart.product")
-    const product = await user?.cart?.find(elm => elm.product.slug == slug) 
+    const product = await user?.cart?.find(elm => elm._id == cid) 
     if (!product) throw new Error("Product not found")
     res.status(200).json({
         success: true,
@@ -357,6 +365,14 @@ const deleteProductCart = asyncHandler(async (req, res) => {
 const getCart = asyncHandler(async (req, res) => { 
     const { _id } = req.user
     const cart = await User.findById(_id).select("cart").populate("cart.product","title price images slug brand")
+    res.status(200).json({
+        success: cart ? true : false,
+        cart: cart ? cart : "something went wrong"
+    })
+})
+const getCartUser = asyncHandler(async (req, res) => { 
+    const {uid} = req.params
+    const cart = await User.findById(uid).select("cart").populate("cart.product","title price images slug brand")
     res.status(200).json({
         success: cart ? true : false,
         cart: cart ? cart : "something went wrong"
@@ -408,5 +424,7 @@ export {
     refreshToken,
     getCart,
     deleteProductCart,
-    getProductToCart
+    getProductToCart,
+    getUser,
+    getCartUser
 }
