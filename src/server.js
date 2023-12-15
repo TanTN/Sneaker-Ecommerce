@@ -27,8 +27,8 @@ const ON_SERVER = () => {
     app.use(cors({
         origin: env.CLIENT_URL,
         methods: "GET,PUT,POST,DELETE",
-        preflightContinue: false,
-        credentials: true
+        credentials: true,
+        allowedHeaders: 'Content-Type,Authorization'
     }))
     routes(app)
     
