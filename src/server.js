@@ -24,12 +24,13 @@ const ON_SERVER = () => {
 
     app.use(express.json())
     app.use(express.urlencoded({ extended: true}))
-    app.use(cors({
-        origin: env.CLIENT_URL,
-        methods: "GET,PUT,POST,DELETE",
-        credentials: true,
-        allowedHeaders: 'Content-Type,Authorization'
-    }))
+    // app.use(cors({
+    //     origin: env.CLIENT_URL,
+    //     methods: "GET,PUT,POST,DELETE",
+    //     credentials: true,
+    //     allowedHeaders: 'Content-Type,Authorization'
+    // }))
+    app.use(cors())
     routes(app)
     
     const PORT = env.APP_PORT || 6100
