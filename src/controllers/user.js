@@ -95,7 +95,7 @@ const login = asyncHandler(async (req, res) => {
     const userUpdate = await User.findByIdAndUpdate(user._id,{accessToken,refreshToken},{new: true}).select("-password -createdAt -updatedAt -refreshToken")
 
     // add refresh in cookie
-    res.cookie("refreshToken",refreshToken, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true })
+    res.cookie("refreshToken",refreshToken, { maxAge: 7 * 24 * 60 * 60 * 1000})
     
     res.status(200).json({
         success: userUpdate ? true : false,
