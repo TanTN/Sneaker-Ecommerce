@@ -29,7 +29,10 @@ const ON_SERVER = () => {
         origin: env.CLIENT_URL,
         methods: "GET,PUT,POST,DELETE",
         credentials: true,
-        allowedHeaders: 'Content-Type,Authorization'
+        allowedHeaders: 'Content-Type,Authorization',
+        cookie: {
+            domain: env.DOMAIN_URL,
+        },
     }))
     routes(app)
     
