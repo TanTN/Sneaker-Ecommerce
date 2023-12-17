@@ -10,7 +10,7 @@ export const env = {
     CLOUDINARY_NAME: process.env.CLOUDINARY_NAME,
     CLOUDINARY_KEY:process.env.CLOUDINARY_KEY,
     CLOUDINARY_SECRET: process.env.CLOUDINARY_SECRET,
-    CLIENT_URL: process.env.CLIENT_URL || "https://sneaker-ecommerce-client-git-master-tantn.vercel.app",
+    CLIENT_URL: process.env.CLIENT_URL || "https://sneaker-ecommerce-client-tantn.vercel.app",
     PAGE_LIMIT: process.env.PAGE_LIMIT,
     DOMAIN_URL: process.env.DOMAIN_URL || "sneaker-ecommerce-client-git-master-tantn.vercel.app",
 }
