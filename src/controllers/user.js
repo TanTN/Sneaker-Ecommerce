@@ -163,7 +163,7 @@ const refreshToken = asyncHandler(async (req, res) => {
     await user.save()
 
     res.clearCookie("refreshToken", { httpOnly: true, secure: true })
-    await res.cookie("refreshToken", newRefreshToken,{httpOnly: true, maxAge: Date.now() + 7 * 24 * 60 * 60 * 1000,secure: true })
+    res.cookie("refreshToken", newRefreshToken,{httpOnly: true, maxAge: Date.now() + 7 * 24 * 60 * 60 * 1000,secure: true })
 
     res.status(200).json({
         success: true,
