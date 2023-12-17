@@ -95,8 +95,8 @@ const login = asyncHandler(async (req, res) => {
     const userUpdate = await User.findByIdAndUpdate(user._id,{accessToken,refreshToken},{new: true}).select("-password -createdAt -updatedAt -refreshToken")
 
     // add refresh in cookie
-    res.cookie("refreshToken",refreshToken, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true })
-    
+    res.cookie("refreshToken",refreshToken, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: false, secure: false })
+
     res.status(200).json({
         success: userUpdate ? true : false,
         user: userUpdate ? userUpdate : "somethings went wrong"
@@ -150,29 +150,25 @@ const getUser = asyncHandler(async (req, res) => {
 
 const refreshToken = asyncHandler(async (req, res) => {
     const refreshToken = req.cookies['refreshToken']
-    res.status(200).json(req.cookies)
-    // if (!refreshToken) throw new Error("Có lỗi đã xảy ra")
+    if (!refreshToken) throw new Error("Có lỗi đã xảy ra")
+    // check user
+    const user = await User.findOne({refreshToken})
+    if (!user) throw new Error("Không tìm thấy tài khoản.")
 
-    // // check user
-    // const user = await User.findOne({refreshToken})
-    // if (!user) throw new Error("Không tìm thấy tài khoản.")
+    // create access token and refresh token
+    const newAccessToken = generateAccessToken(user._id.toString(), user.role)
+    const newRefreshToken = generateRefreshToken(user._id.toString())
+    user.accessToken = newAccessToken
+    user.refreshToken = newRefreshToken
+    await user.save()
 
-    // // create access token and refresh token
-    // const newAccessToken = generateAccessToken(user._id.toString(), user.role)
-    // const newRefreshToken = generateRefreshToken(user._id.toString())
-    // user.accessToken = newAccessToken
-    // user.refreshToken = newRefreshToken
-    // await user.save()
+    res.clearCookie("refreshToken",{httpOnly: true, secure: true})
+    res.cookie("refreshToken", newRefreshToken,{httpOnly: true, secure: true, maxAge: Date.now() + 7 * 24 * 60 * 60 * 1000})
 
-    // res.clearCookie("refreshToken",{httpOnly: true, secure: true})
-    // res.cookie("refreshToken", newRefreshToken,{httpOnly: true, secure: true, maxAge: Date.now() + 7 * 24 * 60 * 60 * 1000})
-
-    // res.status(200).json({
-    //     success: true,
-    //     accessToken: newAccessToken
-    // })
-    
-
+    res.status(200).json({
+        success: true,
+        accessToken: newAccessToken
+    })
 })
 
 const updateUser = asyncHandler(async (req, res) => { 
