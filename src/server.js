@@ -31,7 +31,6 @@ const ON_SERVER = () => {
         credentials: true,
         allowedHeaders: 'Content-Type,Authorization'
     }))
-    // app.use(cors())
     routes(app)
     
     const PORT = env.APP_PORT || 6100
