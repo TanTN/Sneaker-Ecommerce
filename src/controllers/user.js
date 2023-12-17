@@ -96,11 +96,12 @@ const login = asyncHandler(async (req, res) => {
 
     // add refresh in cookie
     res.cookie("refreshToken",refreshToken, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true,secure: true})
-    res.cookie("count","1234")
+
 
     res.status(200).json({
         success: userUpdate ? true : false,
-        user: userUpdate ? userUpdate : "somethings went wrong"
+        user: userUpdate ? userUpdate : "somethings went wrong",
+        refreshToken
     })
 })
 

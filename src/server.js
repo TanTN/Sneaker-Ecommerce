@@ -17,11 +17,11 @@ const ON_SERVER = () => {
 
     // middleware
     // hiện thị thông tin và status gửi về
-    // app.use(morgan("dev"))
+    app.use(morgan("dev"))
     // ẩn đi nodejs trong response
-    // app.use(helmet())
+    app.use(helmet())
     // lén dữ liệu trong response
-    // app.use(compress())
+    app.use(compress())
 
     app.use(express.json())
     app.use(express.urlencoded({ extended: true}))
