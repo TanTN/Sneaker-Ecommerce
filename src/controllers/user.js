@@ -95,7 +95,7 @@ const login = asyncHandler(async (req, res) => {
     const userUpdate = await User.findByIdAndUpdate(user._id,{accessToken,refreshToken},{new: true}).select("-password -createdAt -updatedAt -refreshToken")
 
     // add refresh in cookie
-    res.cookie("refreshToken",refreshToken, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true })
+    res.cookie("refreshToken","1234", { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true})
 
     res.status(200).json({
         success: userUpdate ? true : false,
@@ -163,7 +163,7 @@ const refreshToken = asyncHandler(async (req, res) => {
     await user.save()
 
     await res.clearCookie("refreshToken",{httpOnly: true, secure: true})
-    await res.cookie("refreshToken", newRefreshToken,{httpOnly: true, secure: true, maxAge: Date.now() + 7 * 24 * 60 * 60 * 1000})
+    await res.cookie("refreshToken", newRefreshToken,{httpOnly: true, maxAge: Date.now() + 7 * 24 * 60 * 60 * 1000})
 
     res.status(200).json({
         success: true,
