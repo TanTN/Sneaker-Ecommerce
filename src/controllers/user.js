@@ -95,7 +95,7 @@ const login = asyncHandler(async (req, res) => {
     const userUpdate = await User.findByIdAndUpdate(user._id,{accessToken,refreshToken},{new: true}).select("-password -createdAt -updatedAt -refreshToken")
 
     // add refresh in cookie
-    res.cookie("refreshToken",refreshToken, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true,secure: true})
+    // res.cookie("refreshToken",refreshToken, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true,secure: true})
 
 
     res.status(200).json({
@@ -152,6 +152,7 @@ const getUser = asyncHandler(async (req, res) => {
 
 const refreshToken = asyncHandler(async (req, res) => {
     const refreshToken = req.cookies['refreshToken']
+    console.log(refreshToken)
     if (!refreshToken) throw new Error("Có lỗi đã xảy ra")
     // check user
     const user = await User.findOne({refreshToken})
@@ -164,11 +165,12 @@ const refreshToken = asyncHandler(async (req, res) => {
     user.refreshToken = newRefreshToken
     await user.save()
 
-    res.clearCookie("refreshToken", { httpOnly: true, secure: true })
-    res.cookie("refreshToken", newRefreshToken,{httpOnly: true, maxAge: Date.now() + 7 * 24 * 60 * 60 * 1000,secure: true })
+    // res.clearCookie("refreshToken", { httpOnly: true, secure: true })
+    // res.cookie("refreshToken", newRefreshToken,{httpOnly: true, maxAge: Date.now() + 7 * 24 * 60 * 60 * 1000,secure: true })
 
     res.status(200).json({
         success: true,
+        refreshToken: newRefreshToken,
         accessToken: newAccessToken
     })
 })
