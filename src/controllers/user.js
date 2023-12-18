@@ -151,8 +151,8 @@ const getUser = asyncHandler(async (req, res) => {
 })
 
 const refreshToken = asyncHandler(async (req, res) => {
-    const refreshToken = req.cookies['refreshToken']
-
+    // const refreshToken = req.cookies['refreshToken']
+    const {refreshToken} = req.body
     if (!refreshToken) throw new Error("Có lỗi đã xảy ra")
     // check user
     const user = await User.findOne({refreshToken})
