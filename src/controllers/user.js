@@ -152,7 +152,7 @@ const getUser = asyncHandler(async (req, res) => {
 
 const refreshToken = asyncHandler(async (req, res) => {
     const refreshToken = req.cookies['refreshToken']
-    console.log(refreshToken)
+
     if (!refreshToken) throw new Error("Có lỗi đã xảy ra")
     // check user
     const user = await User.findOne({refreshToken})
@@ -171,7 +171,8 @@ const refreshToken = asyncHandler(async (req, res) => {
     res.status(200).json({
         success: true,
         refreshToken: newRefreshToken,
-        accessToken: newAccessToken
+        accessToken: newAccessToken,
+        refreshTokenPrevious:refreshToken
     })
 })
 
