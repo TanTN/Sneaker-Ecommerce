@@ -84,7 +84,7 @@ const login = asyncHandler(async (req, res) => {
     const user = await User.findOne({ email })
     
     // validate email and password
-    if (!user) throw new Error("Không tìm thấy tài khoản của bạn.")
+    if (!user) throw new Error("Email của bạn chưa được đăng kí.")
     if (!await user.isCorrectPassword(password)) throw new Error("Mật khẩu của bạn không đúng.")
 
     // create access token and refresh token
@@ -156,7 +156,7 @@ const refreshToken = asyncHandler(async (req, res) => {
     if (!refreshToken) throw new Error("Có lỗi đã xảy ra")
     // check user
     const user = await User.findOne({refreshToken})
-    if (!user) throw new Error("Không tìm thấy tài khoản.")
+    if (!user) throw new Error("Tài khoản của bạn đã được đăng nhập ở một nơi khác, xin hãy đăng nhập lại.")
 
     // create access token and refresh token
     const newAccessToken = generateAccessToken(user._id.toString(), user.role)
@@ -172,7 +172,6 @@ const refreshToken = asyncHandler(async (req, res) => {
         success: true,
         refreshToken: newRefreshToken,
         accessToken: newAccessToken,
-        refreshTokenPrevious:refreshToken
     })
 })
 
