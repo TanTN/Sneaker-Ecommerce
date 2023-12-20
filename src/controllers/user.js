@@ -107,12 +107,8 @@ const login = asyncHandler(async (req, res) => {
 
 const logout = asyncHandler(async (req, res) => {
     const { _id } = req.user
-    const cookie = req.cookies["refreshToken"]
-
-    // check refresh token in cookie
-    if (!cookie) throw new Error("no refresh token in cookie")
-
-    await User.findByIdAndUpdate(_id, { refreshToken: ""}, { new: true })
+    const user = await User.findByIdAndUpdate(_id, { refreshToken: "" }, { new: true })
+    if (!user) throw new Error("User notfound")
     res.clearCookie("refreshToken", {
         httpOnly: true,
         secure: true
@@ -154,7 +150,7 @@ const refreshToken = asyncHandler(async (req, res) => {
     // const refreshToken = req.cookies['refreshToken']
     const {refreshToken} = req.body
     if (!refreshToken) throw new Error("Có lỗi đã xảy ra")
-    // check user
+        // check user
     const user = await User.findOne({refreshToken})
     if (!user) throw new Error("Tài khoản của bạn đã được đăng nhập ở một nơi khác, xin hãy đăng nhập lại.")
 

@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 import {env} from "../configs/environment.js"
 const verifyToken = (req, res, next) => {
-
+    
     if (req?.headers?.authorization?.startsWith('Bearer ')) {
 
         const accessToken = req?.headers?.authorization.split(' ')[1]
